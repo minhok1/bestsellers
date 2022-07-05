@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchService } from '../../services/search.service';
 import { Subscription } from 'rxjs';
+import { SearchService } from '../../services/search.service';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css'],
+  selector: 'app-search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.css'],
 })
-export class HeaderComponent implements OnInit {
+export class SearchComponent implements OnInit {
   isSearchActive: boolean = false;
-  subscription: Subscription | undefined = undefined;
+  subscription = new Subscription();
 
   constructor(private searchService: SearchService) {
     this.subscription = this.searchService
@@ -18,8 +18,4 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-
-  toggleSearch() {
-    this.searchService.toggleSearch();
-  }
 }

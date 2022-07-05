@@ -1,4 +1,7 @@
 <div class="header-container">
   <h1>New York Times Bestsellers</h1>
-  <button class="search-button">Search</button>
+  <app-search-button
+    (onButtonClick)="toggleSearch()"
+    [title]="isSearchActive ? 'Current' : 'Search'"
+  ></app-search-button>
 </div>

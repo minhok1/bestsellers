@@ -1,6 +1,9 @@
 <div>
   <h3>{{ title }}</h3>
   <div>
-    <app-book-list-item *ngFor="let book of books"></app-book-list-item>
+    <app-book-list-item
+      *ngFor="let book of books$ | async"
+      [bookInfo]="book"
+    ></app-book-list-item>
   </div>
 </div>

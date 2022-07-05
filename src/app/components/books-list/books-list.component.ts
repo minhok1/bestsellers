@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Book } from '../../shared/types';
 import { BookService } from '../../services/book.service';
 
 @Component({
@@ -8,13 +10,11 @@ import { BookService } from '../../services/book.service';
 })
 export class BooksListComponent implements OnInit {
   @Input() title: string = 'Current';
-  books: any = [];
+  books$: Observable<Book[]> | undefined = undefined;
 
   constructor(private bookService: BookService) {}
 
   ngOnInit(): void {
-    this.bookService
-      .getCurrentBooks()
-      .subscribe((books: any) => (this.books = books.results.books));
+    this.books$ = this.bookService.getCurrentBooks();
   }
 }

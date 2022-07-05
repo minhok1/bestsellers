@@ -1,1 +1,9 @@
-<div>item</div>
+<div class="book-item">
+  <img src="{{ bookInfo!.cover }}" class="book-item-cover" />
+  <div class="book-item-info">
+    <div class="book-item-title">{{ bookInfo!.title }}</div>
+    <div class="book-item-author">{{ bookInfo!.author }}</div>
+    <div class="book-item-id">{{ bookInfo!.id }}</div>
+  </div>
+  <div class="book-item-description">{{ bookInfo!.description }}</div>
+</div>

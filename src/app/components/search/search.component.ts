@@ -10,6 +10,8 @@ import { SearchService } from '../../services/search.service';
 export class SearchComponent implements OnInit {
   isSearchActive: boolean = false;
   subscription = new Subscription();
+  searchTime = '';
+  searchType = '';
 
   constructor(private searchService: SearchService) {
     this.subscription = this.searchService
@@ -18,4 +20,8 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  onSearchSubmit() {
+    this.searchService.makeListSearch(this.searchTime, this.searchType);
+  }
 }

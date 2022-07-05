@@ -1,11 +1,15 @@
-<form *ngIf="isSearchActive" class="search-form">
+<form *ngIf="isSearchActive" class="search-form" (ngSubmit)="onSearchSubmit()">
   <div class="form-control">
     <label for="time">Select Time</label>
-    <input name="time" />
+    <input
+      name="time"
+      [(ngModel)]="searchTime"
+      placeholder="Enter time in YYYY-MM-DD"
+    />
   </div>
   <div class="form-control">
     <label for="type">Select Type</label>
-    <input name="type" />
+    <input name="type" [(ngModel)]="searchType" placeholder="Enter book type" />
   </div>
-  <input type="submit" value="Save Task" class="submit" />
+  <input type="submit" value="Submit" class="submit" />
 </form>

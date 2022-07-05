@@ -12,23 +12,31 @@ const apiKey = 'WtR8d6QrEwJYtoBieQA0rjVlRzvJNnk5';
 export class BookService {
   constructor(private http: HttpClient) {}
 
-  getCurrentBooks(): Observable<Book[]> {
-    return this.http
-      .get(
-        `${apiUrl}/current/combined-print-and-e-book-fiction.json?api-key=${apiKey}`
-      )
-      .pipe(
-        map((response: any) => response.results.books),
-        map((books: any) => {
-          return books.map((book: any) => ({
-            id: book.primary_isbn13,
-            title: book.title,
-            author: book.author,
-            cover: book.book_image,
-            description: book.description,
-            showReviews: false,
-          }));
-        })
-      );
+  getBooks(url: string): Observable<Book[]> {
+    return this.http.get(url).pipe(
+      map((response: any) => response.results.books),
+      map((books: any) => {
+        return books.map((book: any) => ({
+          id: book.primary_isbn13,
+          title: book.title,
+          author: book.author,
+          cover: book.book_image,
+          description: book.description,
+          showReviews: false,
+        }));
+      })
+    );
   }
+
+  getCurrentBooks(): Observable<Book[]> {
+    const url = `${apiUrl}/current/combined-print-and-e-book-fiction.json?api-key=${apiKey}`;
+    return this.getBooks(url);
+  }
+
+  getSearchBooks(time: string, type: string): Observable<Book[]> {
+    const url = `${apiUrl}/${time}/${type}.json?api-key=${apiKey}`;
+    return this.getBooks(url);
+  }
+
+  //getReviews
 }

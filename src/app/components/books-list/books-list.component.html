@@ -1,9 +1,11 @@
 <div>
-  <h3>{{ title }}</h3>
+  <h3>{{ isListSearch ? "Search" : "Current" }}</h3>
   <div>
     <app-book-list-item
-      *ngFor="let book of books$ | async"
+      *ngFor="let book of books$ | async; let i = index"
       [bookInfo]="book"
+      (click)="onItemClick(i, book)"
+      [isExpanded]="expanded === i ? true : false"
     ></app-book-list-item>
   </div>
 </div>
